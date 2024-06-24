@@ -19,7 +19,7 @@ vector<string> Reply_How = {"I Am Fine.",
 vector<string> Reply_Nice = {"Thanks .",
                              "Ohh , It's Okay .",
                              "Thank You"};
-vector<string> Reply_Functions = {"I Can Perform Many Tasks Such As Assist You With Casual Chatting, Searching On Web For Best Result, Some Basic Maths And Much More",
+vector<string> Reply_Functions = {"I Can Perform Many Tasks Such As Assist You With Casual Chatting",
                                    "Let Me Ask You First, How Can I Help You ?"};
 vector<string> Sorry_Reply = {"Sorry , That's Beyond My Abilities .",
                                 "Sorry , I Can't Do That .",
