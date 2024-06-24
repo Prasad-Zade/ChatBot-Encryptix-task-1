@@ -1,0 +1,104 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+
+using namespace std;
+
+vector<string> Reply_Hello = {"Hey, How Are You?"};
+vector<string> Reply_Bye = {"Bye Sir.",
+                             "It's Okay.",
+                             "Thank You, I am Going Offline"};
+vector<string> Reply_Ok = {"Give Me Command Sir"};
+vector<string> Reply_How = {"I Am Fine.",
+                             "Excellent.",
+                             "Absolutely Fine.",
+                             "I'm Fine.",
+                             "Thanks For Asking."};
+vector<string> Reply_Nice = {"Thanks .",
+                             "Ohh , It's Okay .",
+                             "Thank You"};
+vector<string> Reply_Functions = {"I Can Perform Many Tasks Such As Assist You With Casual Chatting, Searching On Web For Best Result, Some Basic Maths And Much More",
+                                   "Let Me Ask You First, How Can I Help You ?"};
+vector<string> Sorry_Reply = {"Sorry , That's Beyond My Abilities .",
+                                "Sorry , I Can't Do That .",
+                                "I'm sorry, I don't know how to respond to that."};
+vector<string> Whatsup_Reply = {"Not Much, Just Waiting For Your Command",
+                                  "Just Hanging Out. How About You",
+                                  "Nothing Too Exciting",
+                                  "Just Finished Some Work"};
+vector<string> Reply_Fine = {"That's Good To Hear.",
+                               "I'm Glad To Hear That",
+                               "Great!"};
+
+string ChatBot(string query) {
+    transform(query.begin(), query.end(), query.begin(), ::tolower);
+
+    if (query.find("how are you") != string::npos ||
+        query.find("are you fine") != string::npos ||
+        query.find("what's up") != string::npos ||
+        query.find("whats up") != string::npos) {
+        return Reply_How[rand() % Reply_How.size()];
+    } 
+    else if (query.find("ok") != string::npos) {
+        return "Give Me Command Sir";
+    } 
+    else if (query.find("hey") != string::npos ||
+               query.find("hello") != string::npos ||
+               query.find("hi") != string::npos ||
+               query.find("hay") != string::npos) {
+        return Reply_Hello[rand() % Reply_Hello.size()];
+    } else if (query.length() <= 3) {
+        return "";
+    } else if (query.find("fine") != string::npos ||
+               query.find("good") != string::npos) {
+        return Reply_Fine[rand() % Reply_Fine.size()];
+    } else if (query.find("by") != string::npos ||
+               query.find("bye") != string::npos ||
+               query.find("exit") != string::npos ||
+               query.find("sleep") != string::npos ||
+               query.find("go") != string::npos ||
+               query.find("relax") != string::npos ||
+               query.find("rest") != string::npos ||
+               query.find("goodbye") != string::npos) {
+        return Reply_Bye[rand() % Reply_Bye.size()];
+    } else if (query.find("nice") != string::npos ||
+               query.find("good") != string::npos ||
+               query.find("excellent") != string::npos ||
+               query.find("great") != string::npos) {
+        return Reply_Nice[rand() % Reply_Nice.size()];
+    } else if (query.find("thank") != string::npos) {
+        return (rand() % 2 == 0) ? "you're welcome" : "welcome";
+    } else if (query.find("functions") != string::npos ||
+               query.find("abilities") != string::npos ||
+               query.find("what can you do") != string::npos) {
+        return Reply_Functions[rand() % Reply_Functions.size()];
+    } else if (query.find("what are you doing") != string::npos ||
+               query.find("how about you") != string::npos ||
+               query.find("what's going on") != string::npos ||
+               query.find("whats going on") != string::npos) {
+        return Whatsup_Reply[rand() % Whatsup_Reply.size()];
+    } else {
+        return Sorry_Reply[rand() % Sorry_Reply.size()];
+    }
+}
+
+int main() {
+    cout << "Hi there! I'm Jarvis, your friendly chatbot." << endl;
+
+    while (true) {
+        string user_input;
+        cout << "You: ";
+        getline(cin, user_input);
+
+        if (user_input == "by" || user_input == "bye" || user_input == "exit") {
+            cout << Reply_Bye[rand() % Reply_Bye.size()] << endl;
+            break;
+        }
+
+        cout << "Jarvis: " << ChatBot(user_input) << endl;
+    }
+
+    return 0;
+}
